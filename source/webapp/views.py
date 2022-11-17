@@ -53,3 +53,23 @@ class UpdateTask(View):
             self.task.save()
             return redirect('task_view', pk=self.task.pk)
         return render(request, 'update.html', {'form': form})
+
+
+class CreateTask(View):
+
+    def get(self, request, *args, **kwargs):
+        if request.method == 'GET':
+            form = TaskForm()
+            return render(request, 'create.html', {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = TaskForm(data=request.POST)
+        if form.is_valid():
+            summary = form.cleaned_data.get('summary')
+            description = form.cleaned_data.get('description')
+            status = form.cleaned_data.get('status')
+            type = form.cleaned_data.get('type')
+            new_task = Task.objects.create(summary=summary, description=description,
+                                           status=status, type=type)
+            return redirect('task_view', pk=new_task.pk)
+        return render(request, 'create.html', {'form': form})
