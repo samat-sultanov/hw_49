@@ -73,3 +73,20 @@ class CreateTask(View):
                                            status=status, type=type)
             return redirect('task_view', pk=new_task.pk)
         return render(request, 'create.html', {'form': form})
+
+
+class DeleteTask(View):
+
+    def dispatch(self, request, *args, **kwargs):
+        pk = kwargs.get('pk')
+        self.task = get_object_or_404(Task, pk=pk)
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        if request.method == 'GET':
+            return render(request, 'delete.html', {'task': self.task})
+
+    def post(self, request, *args, **kwargs):
+        if request.method == 'POST':
+            self.task.delete()
+            return redirect('index')
