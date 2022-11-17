@@ -1,0 +1,128 @@
+[
+{
+    "model": "webapp.task",
+    "pk": 1,
+    "fields": {
+        "created_at": "2022-11-18T06:46:23.008Z",
+        "updated_at": "2022-11-18T06:46:23.008Z",
+        "summary": "сделать дз",
+        "description": "сделать дз по питону до 19:00",
+        "status": 1,
+        "type": 1
+    }
+},
+{
+    "model": "webapp.task",
+    "pk": 2,
+    "fields": {
+        "created_at": "2022-11-18T06:47:38.611Z",
+        "updated_at": "2022-11-18T06:47:38.611Z",
+        "summary": "рефакторинг",
+        "description": "сделать рефакторинг лабы",
+        "status": 2,
+        "type": 3
+    }
+},
+{
+    "model": "webapp.task",
+    "pk": 3,
+    "fields": {
+        "created_at": "2022-11-18T06:48:57.411Z",
+        "updated_at": "2022-11-18T06:48:57.411Z",
+        "summary": "починить",
+        "description": "починить баг при отображении страницы",
+        "status": 1,
+        "type": 2
+    }
+},
+{
+    "model": "webapp.task",
+    "pk": 4,
+    "fields": {
+        "created_at": "2022-11-18T06:49:24.817Z",
+        "updated_at": "2022-11-18T06:49:24.817Z",
+        "summary": "таблица",
+        "description": "создать таблицу для заливки данных",
+        "status": 1,
+        "type": 1
+    }
+},
+{
+    "model": "webapp.task",
+    "pk": 5,
+    "fields": {
+        "created_at": "2022-11-18T06:50:02.478Z",
+        "updated_at": "2022-11-18T06:50:02.478Z",
+        "summary": "повторение",
+        "description": "повторить пройденные темы по питону",
+        "status": 2,
+        "type": 3
+    }
+},
+{
+    "model": "webapp.task",
+    "pk": 6,
+    "fields": {
+        "created_at": "2022-11-18T06:50:50.974Z",
+        "updated_at": "2022-11-18T06:50:50.974Z",
+        "summary": "поиск",
+        "description": "починить баг в форме поиска на основной странице",
+        "status": 3,
+        "type": 2
+    }
+},
+{
+    "model": "webapp.status",
+    "pk": 1,
+    "fields": {
+        "created_at": "2022-11-18T06:43:53.528Z",
+        "updated_at": "2022-11-18T06:43:53.528Z",
+        "task_status": "New - новый"
+    }
+},
+{
+    "model": "webapp.status",
+    "pk": 2,
+    "fields": {
+        "created_at": "2022-11-18T06:44:11.418Z",
+        "updated_at": "2022-11-18T06:44:11.418Z",
+        "task_status": "In Progress - в процессе"
+    }
+},
+{
+    "model": "webapp.status",
+    "pk": 3,
+    "fields": {
+        "created_at": "2022-11-18T06:44:26.245Z",
+        "updated_at": "2022-11-18T06:44:26.245Z",
+        "task_status": "Done - выполнено"
+    }
+},
+{
+    "model": "webapp.type",
+    "pk": 1,
+    "fields": {
+        "created_at": "2022-11-18T06:45:00.951Z",
+        "updated_at": "2022-11-18T06:45:00.951Z",
+        "task_type": "Task - задача"
+    }
+},
+{
+    "model": "webapp.type",
+    "pk": 2,
+    "fields": {
+        "created_at": "2022-11-18T06:45:10.384Z",
+        "updated_at": "2022-11-18T06:45:10.384Z",
+        "task_type": "Bug - ошибка"
+    }
+},
+{
+    "model": "webapp.type",
+    "pk": 3,
+    "fields": {
+        "created_at": "2022-11-18T06:45:34.237Z",
+        "updated_at": "2022-11-18T06:45:34.237Z",
+        "task_type": "Enhancement - улучшение"
+    }
+}
+]
