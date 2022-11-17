@@ -14,3 +14,13 @@ class IndexView(TemplateView):
         tasks = Task.objects.order_by('-updated_at')
         context = {'tasks': tasks}
         return super().render_to_response(context)
+
+
+class TaskView(TemplateView):
+    template_name = 'task_view.html'
+
+    def get_context_data(self, **kwargs):
+        pk = kwargs.get('pk')
+        task = get_object_or_404(Task, pk=pk)
+        kwargs['task'] = task
+        return super().get_context_data(**kwargs)
