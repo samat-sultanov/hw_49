@@ -18,7 +18,9 @@
     <h3>{{ task.summary }}</h3><br>
     <p>{{ task.description }}</p>
     <p>{{ task.status }}</p>
-    <p>{{ task.type }}</p>
+    {% for each_type in task.type.all %}
+        <p>{{ each_type.task_type }}</p>
+    {% endfor %}
     <br/>
 
 {% endblock %}
