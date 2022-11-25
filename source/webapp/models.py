@@ -1,5 +1,7 @@
 from django.db import models
 
+from webapp.validate import validate_summary
+
 
 class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
@@ -10,8 +12,9 @@ class BaseModel(models.Model):
 
 
 class Task(BaseModel):
-    summary = models.CharField(max_length=100, null=False, blank=False, verbose_name='Заголовок')
-    description = models.TextField(max_length=1000, null=True, blank=True, verbose_name="Описание")
+    summary = models.CharField(max_length=30, null=False, blank=False, verbose_name='Заголовок',
+                               validators=[validate_summary])
+    description = models.TextField(max_length=100, null=True, blank=True, verbose_name="Описание")
     status = models.ForeignKey('webapp.Status', on_delete=models.PROTECT, related_name='tasks',
                                verbose_name='Статус')
     type = models.ManyToManyField('webapp.Type', related_name='tasks', verbose_name='Тип')
