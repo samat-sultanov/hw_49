@@ -21,3 +21,7 @@ class TaskForm(forms.ModelForm):
         if description:
             if len(summary) > len(description):
                 raise ValidationError('Описание задачи не может быть меньше заголовка!')
+        for keyword in sql_keywords:
+            if keyword in summary.lower() or keyword in description.lower():
+                raise ValidationError('Нельзя вводить Select, Delete, Insert, Update, Create!')
+        return super().clean()
