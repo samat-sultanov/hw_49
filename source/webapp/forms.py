@@ -1,16 +1,14 @@
 from django import forms
 from django.forms import widgets
 
-from webapp.models import Status, Type
+from webapp.models import Task
 
 
-class TaskForm(forms.Form):
-    summary = forms.CharField(max_length=100, required=True, label='Заголовок')
-    description = forms.CharField(max_length=1000, required=False, label='Описание',
-                                  widget=widgets.Textarea(attrs={'cols': 40, 'rows': 3}))
-    status = forms.ModelChoiceField(queryset=Status.objects.all(), label='Статус')
-    type = forms.ModelMultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple,
-        queryset=Type.objects.all(), label='Тип',
-        initial=0
-    )
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ['summary', 'description', 'status', 'type']
+        widgets = {
+            'type': widgets.CheckboxSelectMultiple,
+            'description': widgets.Textarea(attrs={'placeholder': 'Описание Задачи'})
+        }
