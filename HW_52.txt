@@ -1,0 +1,35 @@
+from webapp.models import Task, Status, Type
+from datetime import datetime, date, time, timedelta
+from django.db.models import Q, F, Sum, Min, Max, Count
+
+
+
+#Закрытые задачи за последний месяц от текущей даты 
+Task.objects.filter(updated_at__date__gt=date.today()-timedelta(days=30), status=3)
+
+
+#Задачи, имеющие один из указанных статусов И один из указанных типов 
+Task.objects.filter(status__in=(1,2), type__in=(1,2)).distinct()
+
+
+#Задачи, в названии которых содержится слово "bug" в любом регистре или относящиеся к типу "Баг", имеющие НЕ закрытый статус
+q1 = Q(summary__icontains='bug')
+q2 = Q(type__task_type='Bug')
+q3 = Q(status__task_status='Done')
+
+Task.objects.filter((q1 | q2) & ~q3).distinct() 
+
+
+
+-----------------------------------Бонусы---------------------------------------
+
+Task.objects.all().values_list('id', 'summary', 'type__task_type', 'status__task_status') 
+
+
+
+Task.objects.filter(summary=F('description'))
+
+
+
+for each_type in Type.objects.annotate(count=Count('tasks__id')):
+	each_type.count

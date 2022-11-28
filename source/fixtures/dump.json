@@ -5,8 +5,8 @@
     "fields": {
         "created_at": "2022-11-18T06:46:23.008Z",
         "updated_at": "2022-11-21T18:19:14.161Z",
-        "summary": "сделать дз",
-        "description": "сделать дз по питону до 19:00",
+        "summary": "hw",
+        "description": "finish python hw before 19:00",
         "status": 1,
         "type": [
             1,
@@ -20,8 +20,8 @@
     "fields": {
         "created_at": "2022-11-18T06:47:38.611Z",
         "updated_at": "2022-11-21T18:31:28.332Z",
-        "summary": "рефакторинг",
-        "description": "сделать рефакторинг лабы",
+        "summary": "refactoring",
+        "description": "refactor code from lab work",
         "status": 2,
         "type": [
             2
@@ -33,10 +33,10 @@
     "pk": 3,
     "fields": {
         "created_at": "2022-11-18T06:48:57.411Z",
-        "updated_at": "2022-11-21T18:31:37.882Z",
-        "summary": "починить",
-        "description": "починить баг при отображении страницы",
-        "status": 1,
+        "updated_at": "2022-11-25T09:04:05.999Z",
+        "summary": "fixing",
+        "description": "fix select query from lesson",
+        "status": 2,
         "type": [
             2,
             3
@@ -49,8 +49,8 @@
     "fields": {
         "created_at": "2022-11-18T06:49:24.817Z",
         "updated_at": "2022-11-21T18:19:29.163Z",
-        "summary": "таблица",
-        "description": "создать таблицу для заливки данных",
+        "summary": "table",
+        "description": "create table for data insertion",
         "status": 1,
         "type": [
             1,
@@ -64,8 +64,8 @@
     "fields": {
         "created_at": "2022-11-18T06:50:02.478Z",
         "updated_at": "2022-11-21T18:31:51.429Z",
-        "summary": "повторение",
-        "description": "повторить пройденные темы по питону",
+        "summary": "repeat",
+        "description": "repeat python lessons",
         "status": 2,
         "type": [
             1,
@@ -79,8 +79,8 @@
     "fields": {
         "created_at": "2022-11-18T06:50:50.974Z",
         "updated_at": "2022-11-21T18:18:58.859Z",
-        "summary": "поиск",
-        "description": "починить баг в форме поиска на основной странице",
+        "summary": "bug",
+        "description": "fix bug on main page",
         "status": 3,
         "type": [
             1,
@@ -94,8 +94,8 @@
     "fields": {
         "created_at": "2022-11-21T18:19:51.623Z",
         "updated_at": "2022-11-21T18:19:51.623Z",
-        "summary": "ДЗ",
-        "description": "выполнить дз по питону 50",
+        "summary": "hw",
+        "description": "do hw 52",
         "status": 2,
         "type": [
             1,
@@ -109,11 +109,43 @@
     "fields": {
         "created_at": "2022-11-21T18:20:37.922Z",
         "updated_at": "2022-11-21T18:20:37.922Z",
-        "summary": "бд",
-        "description": "повторить связи многие ко многим",
+        "summary": "database",
+        "description": "repeat many to many relations",
         "status": 1,
         "type": [
             1,
+            3
+        ]
+    }
+},
+{
+    "model": "webapp.task",
+    "pk": 9,
+    "fields": {
+        "created_at": "2022-11-25T08:42:02.773Z",
+        "updated_at": "2022-11-25T09:01:47.442Z",
+        "summary": "test",
+        "description": "test data insertion",
+        "status": 2,
+        "type": [
+            1,
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "webapp.task",
+    "pk": 10,
+    "fields": {
+        "created_at": "2022-11-25T09:02:50.988Z",
+        "updated_at": "2022-11-25T09:03:26.931Z",
+        "summary": "insert",
+        "description": "insert data into table",
+        "status": 1,
+        "type": [
+            1,
+            2,
             3
         ]
     }
@@ -124,7 +156,7 @@
     "fields": {
         "created_at": "2022-11-18T06:43:53.528Z",
         "updated_at": "2022-11-18T06:43:53.528Z",
-        "task_status": "New - новый"
+        "task_status": "New"
     }
 },
 {
@@ -133,7 +165,7 @@
     "fields": {
         "created_at": "2022-11-18T06:44:11.418Z",
         "updated_at": "2022-11-18T06:44:11.418Z",
-        "task_status": "In Progress - в процессе"
+        "task_status": "In Progress"
     }
 },
 {
@@ -142,7 +174,7 @@
     "fields": {
         "created_at": "2022-11-18T06:44:26.245Z",
         "updated_at": "2022-11-18T06:44:26.245Z",
-        "task_status": "Done - выполнено"
+        "task_status": "Done"
     }
 },
 {
@@ -151,7 +183,7 @@
     "fields": {
         "created_at": "2022-11-18T06:45:00.951Z",
         "updated_at": "2022-11-18T06:45:00.951Z",
-        "task_type": "Task - задача"
+        "task_type": "Task"
     }
 },
 {
@@ -160,7 +192,7 @@
     "fields": {
         "created_at": "2022-11-18T06:45:10.384Z",
         "updated_at": "2022-11-18T06:45:10.384Z",
-        "task_type": "Bug - ошибка"
+        "task_type": "Bug"
     }
 },
 {
@@ -169,7 +201,7 @@
     "fields": {
         "created_at": "2022-11-18T06:45:34.237Z",
         "updated_at": "2022-11-18T06:45:34.237Z",
-        "task_type": "Enhancement - улучшение"
+        "task_type": "Enhancement"
     }
 },
 {
@@ -177,7 +209,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$390000$BNZnMkHhk3PI8uOe3w6GWG$ZUYfyegus5MhEWRnjuV1vpuKcWZPxOg8wac+6cQwZCk=",
-        "last_login": "2022-11-21T18:30:51.936Z",
+        "last_login": "2022-11-28T18:10:24.152Z",
         "is_superuser": true,
         "username": "admin",
         "first_name": "",
