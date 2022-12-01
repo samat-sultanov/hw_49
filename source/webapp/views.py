@@ -1,19 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 
 from webapp.forms import TaskForm
 from webapp.models import Task
 
 
-class IndexView(TemplateView):
+class IndexView(ListView):
+    model = Task
     template_name = 'index.html'
-
-    def get(self, request, *args, **kwargs):
-        tasks = Task.objects.order_by('-updated_at')
-        context = {'tasks': tasks}
-        return super().render_to_response(context)
+    context_object_name = 'tasks'
+    ordering = ['-updated_at']
+    paginate_by = 4
 
 
 class TaskView(TemplateView):
