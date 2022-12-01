@@ -7,6 +7,8 @@
 {% endblock %}
 
 {% block content %}
+    {% include 'partial/search.html' %}
+
     <br/><h1>Список Задач:</h1><br>
     <div class="row">
         {% for task in tasks %}
@@ -19,5 +21,8 @@
                 </div>
             </div>
         {% endfor %}
+        {% if is_paginated %}
+            {% include 'partial/pagination.html' %}
+        {% endif %}
     </div>
 {% endblock %}
