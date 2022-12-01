@@ -25,3 +25,7 @@ class TaskForm(forms.ModelForm):
             if keyword in summary.lower() or keyword in description.lower():
                 raise ValidationError('Нельзя вводить Select, Delete, Insert, Update, Create!')
         return super().clean()
+
+
+class SearchForm(forms.Form):
+    search = forms.CharField(max_length=50, required=False, label='Найти')
