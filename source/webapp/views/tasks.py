@@ -11,7 +11,7 @@ from webapp.models import Task
 
 class IndexView(ListView):
     model = Task
-    template_name = 'index.html'
+    template_name = 'tasks/index.html'
     context_object_name = 'tasks'
     ordering = ['-updated_at']
     paginate_by = 4
@@ -45,7 +45,7 @@ class IndexView(ListView):
 
 
 class TaskView(TemplateView):
-    template_name = 'task_view.html'
+    template_name = 'tasks/task_view.html'
 
     def get_context_data(self, **kwargs):
         pk = kwargs.get('pk')
@@ -69,7 +69,7 @@ class UpdateTask(View):
                 'status': self.task.status,
                 'type': self.task.type.all()
             })
-            return render(request, 'update.html', {'form': form})
+            return render(request, 'tasks/update.html', {'form': form})
 
     def post(self, request, *args, **kwargs):
         form = TaskForm(data=request.POST)
@@ -80,7 +80,7 @@ class UpdateTask(View):
             self.task.type.set(form.cleaned_data.pop('type'))
             self.task.save()
             return redirect('task_view', pk=self.task.pk)
-        return render(request, 'update.html', {'form': form})
+        return render(request, 'tasks/update.html', {'form': form})
 
 
 class CreateTask(View):
@@ -88,7 +88,7 @@ class CreateTask(View):
     def get(self, request, *args, **kwargs):
         if request.method == 'GET':
             form = TaskForm()
-            return render(request, 'create.html', {'form': form})
+            return render(request, 'tasks/create.html', {'form': form})
 
     def post(self, request, *args, **kwargs):
         form = TaskForm(data=request.POST)
@@ -101,7 +101,7 @@ class CreateTask(View):
                                            status=status)
             new_task.type.set(type)
             return redirect('task_view', pk=new_task.pk)
-        return render(request, 'create.html', {'form': form})
+        return render(request, 'tasks/create.html', {'form': form})
 
 
 class DeleteTask(View):
@@ -113,9 +113,9 @@ class DeleteTask(View):
 
     def get(self, request, *args, **kwargs):
         if request.method == 'GET':
-            return render(request, 'delete.html', {'task': self.task})
+            return render(request, 'tasks/delete.html', {'task': self.task})
 
     def post(self, request, *args, **kwargs):
         if request.method == 'POST':
             self.task.delete()
-            return redirect('index')
+            return redirect('projects_index')

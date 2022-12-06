@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Details Page{% endblock %}
+
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "project_task_create" project.pk %}">Добавить Задачу</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+    <br/>
+    <h3>{{ project.title }}</h3><br>
+    <h4>{{ project.full_description }}</h4><br>
+    <div class="row">
+        {% for task in project.project_tasks.all %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{% url "task_view" task.pk %}"><h5 style="display: inline-block;">{{ task.id }}
+                            - {{ task.summary }}</h5></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <br/>
+
+{% endblock %}

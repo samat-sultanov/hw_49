@@ -20,7 +20,7 @@
             <form action="{% url "delete_task" task.pk %}" method="post">
                 {% csrf_token %}
                 <button class="btn btn-outline-primary" type="submit">Да</button>
-                <a href="/" class="btn btn-outline-primary" role="button">Нет</a>
+                <a href="/webapp/static" class="btn btn-outline-primary" role="button">Нет</a>
             </form>
         </div>
     </div>
