@@ -8,6 +8,7 @@
         "summary": "hw",
         "description": "finish python hw before 19:00",
         "status": 1,
+        "project": 2,
         "type": [
             1,
             3
@@ -23,6 +24,7 @@
         "summary": "refactoring",
         "description": "refactor code from lab work",
         "status": 2,
+        "project": 1,
         "type": [
             2
         ]
@@ -37,6 +39,7 @@
         "summary": "fixing",
         "description": "fix select query from lesson",
         "status": 2,
+        "project": 3,
         "type": [
             2,
             3
@@ -52,6 +55,7 @@
         "summary": "table",
         "description": "create table for data insertion",
         "status": 1,
+        "project": 3,
         "type": [
             1,
             3
@@ -67,6 +71,7 @@
         "summary": "repeat",
         "description": "repeat python lessons",
         "status": 2,
+        "project": 2,
         "type": [
             1,
             3
@@ -82,6 +87,7 @@
         "summary": "bug",
         "description": "fix bug on main page",
         "status": 3,
+        "project": 2,
         "type": [
             1,
             2
@@ -97,6 +103,7 @@
         "summary": "hw",
         "description": "do hw 52",
         "status": 2,
+        "project": 2,
         "type": [
             1,
             3
@@ -112,6 +119,7 @@
         "summary": "database",
         "description": "repeat many to many relations",
         "status": 1,
+        "project": 2,
         "type": [
             1,
             3
@@ -127,6 +135,7 @@
         "summary": "test",
         "description": "test data insertion",
         "status": 2,
+        "project": 3,
         "type": [
             1,
             2,
@@ -143,6 +152,7 @@
         "summary": "insert",
         "description": "insert data into table",
         "status": 1,
+        "project": 3,
         "type": [
             1,
             2,
@@ -205,11 +215,47 @@
     }
 },
 {
+    "model": "webapp.project",
+    "pk": 1,
+    "fields": {
+        "created_at": "2022-12-06T00:57:09.189Z",
+        "updated_at": "2022-12-06T00:57:09.189Z",
+        "title": "Telegram-bot",
+        "full_description": "Need to create telegram bot to interact with customers",
+        "start_date": "2022-12-06",
+        "end_date": "2022-12-31"
+    }
+},
+{
+    "model": "webapp.project",
+    "pk": 2,
+    "fields": {
+        "created_at": "2022-12-06T01:05:49.498Z",
+        "updated_at": "2022-12-06T01:05:49.498Z",
+        "title": "enhancement",
+        "full_description": "repeat lessons one by one",
+        "start_date": "2022-12-06",
+        "end_date": "2023-01-14"
+    }
+},
+{
+    "model": "webapp.project",
+    "pk": 3,
+    "fields": {
+        "created_at": "2022-12-06T01:06:42.798Z",
+        "updated_at": "2022-12-06T01:06:42.798Z",
+        "title": "sql",
+        "full_description": "solve sql problems to improve writing sql queries",
+        "start_date": "2022-12-04",
+        "end_date": "2023-01-31"
+    }
+},
+{
     "model": "auth.user",
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$390000$BNZnMkHhk3PI8uOe3w6GWG$ZUYfyegus5MhEWRnjuV1vpuKcWZPxOg8wac+6cQwZCk=",
-        "last_login": "2022-11-28T18:10:24.152Z",
+        "last_login": "2022-12-06T00:55:32.209Z",
         "is_superuser": true,
         "username": "admin",
         "first_name": "",
