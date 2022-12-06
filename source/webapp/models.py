@@ -19,6 +19,8 @@ class Task(BaseModel):
     status = models.ForeignKey('webapp.Status', on_delete=models.PROTECT, related_name='tasks',
                                verbose_name='Статус')
     type = models.ManyToManyField('webapp.Type', related_name='tasks', verbose_name='Тип')
+    project = models.ForeignKey('webapp.Project', on_delete=models.CASCADE, related_name='project_tasks',
+                               verbose_name='Проект')
 
     def __str__(self):
         return f"{self.id}. {self.summary}: {self.status}"

@@ -4,7 +4,7 @@ from webapp.models import Task, Status, Type, Project
 
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ['summary', 'status']
+    list_display = ['summary', 'status', 'project']
     list_display_links = ['summary']
     list_filter = ['status', 'type']
     search_fields = ['summary', 'description']
