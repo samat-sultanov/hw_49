@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "create_project" %}">Добавить Проект</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "index" %}">Список Задач</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+    <br/><h1>Список Проектов:</h1><br>
+    <div class="row">
+        {% for project in projects %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{% url "project_view" project.pk %}"><h5
+                                style="display: inline-block;">{{ project.id }}
+                            - {{ project.title }}</h5></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
