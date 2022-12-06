@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from webapp.validate import validate_summary
 
@@ -50,3 +51,21 @@ class Type(BaseModel):
         db_table = "types"
         verbose_name = "Тип"
         verbose_name_plural = "Типы"
+
+
+class Project(BaseModel):
+    title = models.CharField(max_length=30, null=False, blank=False, verbose_name='Название')
+    full_description = models.TextField(max_length=100, null=False, blank=False, verbose_name="Описание проекта")
+    start_date = models.DateField(null=False, blank=False, verbose_name='Дата начала')
+    end_date = models.DateField(null=True, blank=True, verbose_name='Дата окончания')
+
+    def __str__(self):
+        return f"{self.id}. {self.title}"
+
+    def get_absolute_url(self):
+        return reverse('project_view', kwargs={'pk': self.pk})
+
+    class Meta:
+        db_table = "projects"
+        verbose_name = "Проект"
+        verbose_name_plural = "Проекты"
