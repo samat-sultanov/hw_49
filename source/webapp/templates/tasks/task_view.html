@@ -4,9 +4,6 @@
 
 {% block nav %}
     <li class="nav-item">
-        <a class="nav-link" href="{% url "create_task" %}">Добавить Задачу</a>
-    </li>
-    <li class="nav-item">
         <a class="nav-link" href="{% url "update_task" task.pk %}">Изменить Задачу</a>
     <li class="nav-item">
         <a class="nav-link" href="{% url "delete_task" task.pk %}">Удалить Задачу</a>

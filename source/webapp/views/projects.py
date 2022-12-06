@@ -19,3 +19,8 @@ class DetailProjectView(DetailView):
         context = super().get_context_data(**kwargs)
         context['projects'] = self.object
         return context
+
+
+class CreateProject(CreateView):
+    form_class = ProjectForm
+    template_name = 'projects/create.html'
