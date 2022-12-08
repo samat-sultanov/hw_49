@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Update project{% endblock %}
+
+{% block content %}
+    <h1>Редактировать Проект</h1>
+
+    <form action="" method="post">
+       {% include "partial/form.html" with button_text="Изменить" %}
+    </form>
+    <br>
+    <a href="{% url "projects_index" %}">На главную</a>
+
+{% endblock %}

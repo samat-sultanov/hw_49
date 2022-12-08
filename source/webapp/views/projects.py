@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 from webapp.forms import ProjectForm
 from webapp.models import Project
@@ -24,3 +24,9 @@ class DetailProjectView(DetailView):
 class CreateProject(CreateView):
     form_class = ProjectForm
     template_name = 'projects/create.html'
+
+
+class UpdateProject(UpdateView):
+    form_class = ProjectForm
+    template_name = 'projects/update.html'
+    model = Project
