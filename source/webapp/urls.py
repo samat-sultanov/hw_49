@@ -9,9 +9,9 @@ urlpatterns = [
     path('projects/add/', CreateProject.as_view(), name='create_project'),
     path('task/<int:pk>/', TaskView.as_view(), name='task_view'),
     path('project/<int:pk>/', DetailProjectView.as_view(), name='project_view'),
-    path('project/<int:pk>/update/', UpdateProject.as_view(), name='update_project'),
-    path('project/<int:pk>/delete/', DeleteProject.as_view(), name='delete_project'),
     path('task/<int:pk>/update/', UpdateTask.as_view(), name='update_task'),
+    path('project/<int:pk>/update/', UpdateProject.as_view(), name='update_project'),
     path('task/<int:pk>/delete/', DeleteTask.as_view(), name='delete_task'),
+    path('project/<int:pk>/delete/', DeleteProject.as_view(), name='delete_project'),
     path('project/<int:pk>/task/add/', CreateTaskView.as_view(), name='project_task_create')
 ]

@@ -8,7 +8,7 @@ from webapp.models import Project
 
 class CreateTaskView(CreateView):
     form_class = TaskForm
-    template_name = 'tasks_create/create.html'
+    template_name = 'tasks/create.html'
 
     def form_valid(self, form):
         project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
