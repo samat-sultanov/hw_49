@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.utils.http import urlencode
 from django.views import View
 
-from django.views.generic import TemplateView, ListView, UpdateView
+from django.views.generic import TemplateView, ListView, UpdateView, DeleteView
 
 from webapp.forms import TaskForm, SearchForm
 from webapp.models import Task
@@ -85,18 +85,11 @@ class CreateTask(View):
         return render(request, 'tasks/create.html', {'form': form})
 
 
-class DeleteTask(View):
-
-    def dispatch(self, request, *args, **kwargs):
-        pk = kwargs.get('pk')
-        self.task = get_object_or_404(Task, pk=pk)
-        return super().dispatch(request, *args, **kwargs)
+class DeleteTask(DeleteView):
+    model = Task
 
     def get(self, request, *args, **kwargs):
-        if request.method == 'GET':
-            return render(request, 'tasks/delete.html', {'task': self.task})
+        return super().delete(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
-        if request.method == 'POST':
-            self.task.delete()
-            return redirect('projects_index')
+    def get_success_url(self):
+        return reverse('project_view', kwargs={'pk': self.object.project.pk})
