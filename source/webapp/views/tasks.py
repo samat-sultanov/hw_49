@@ -1,9 +1,10 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from django.utils.http import urlencode
 from django.views import View
 
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, UpdateView
 
 from webapp.forms import TaskForm, SearchForm
 from webapp.models import Task
@@ -54,33 +55,13 @@ class TaskView(TemplateView):
         return super().get_context_data(**kwargs)
 
 
-class UpdateTask(View):
+class UpdateTask(UpdateView):
+    form_class = TaskForm
+    template_name = 'tasks/update.html'
+    model = Task
 
-    def dispatch(self, request, *args, **kwargs):
-        pk = kwargs.get('pk')
-        self.task = get_object_or_404(Task, pk=pk)
-        return super().dispatch(request, *args, **kwargs)
-
-    def get(self, request, *args, **kwargs):
-        if request.method == 'GET':
-            form = TaskForm(initial={
-                'summary': self.task.summary,
-                'description': self.task.description,
-                'status': self.task.status,
-                'type': self.task.type.all()
-            })
-            return render(request, 'tasks/update.html', {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        form = TaskForm(data=request.POST)
-        if form.is_valid():
-            self.task.summary = form.cleaned_data.get('summary')
-            self.task.description = form.cleaned_data.get('description')
-            self.task.status = form.cleaned_data.get('status')
-            self.task.type.set(form.cleaned_data.pop('type'))
-            self.task.save()
-            return redirect('task_view', pk=self.task.pk)
-        return render(request, 'tasks/update.html', {'form': form})
+    def get_success_url(self):
+        return reverse('project_view', kwargs={'pk': self.object.project.pk})
 
 
 class CreateTask(View):
