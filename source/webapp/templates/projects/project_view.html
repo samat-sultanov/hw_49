@@ -3,15 +3,17 @@
 {% block title %}Details Page{% endblock %}
 
 {% block nav %}
+    {% if request.user.is_authenticated %}
     <li class="nav-item">
-        <a class="nav-link" href="{% url "update_project" project.pk %}">Редактировать Проект</a>
+        <a class="nav-link" href="{% url "webapp:update_project" project.pk %}">Редактировать Проект</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{% url "delete_project" project.pk %}">Удалить Проект</a>
+        <a class="nav-link" href="{% url "webapp:delete_project" project.pk %}">Удалить Проект</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{% url "project_task_create" project.pk %}">Добавить Задачу</a>
+        <a class="nav-link" href="{% url "webapp:project_task_create" project.pk %}">Добавить Задачу</a>
     </li>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -23,7 +25,7 @@
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{% url "task_view" task.pk %}"><h5 style="display: inline-block;">{{ task.id }}
+                        <a href="{% url "webapp:task_view" task.pk %}"><h5 style="display: inline-block;">{{ task.id }}
                             - {{ task.summary }}</h5></a>
                     </div>
                 </div>

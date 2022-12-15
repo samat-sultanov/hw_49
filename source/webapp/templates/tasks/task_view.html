@@ -3,11 +3,13 @@
 {% block title %}Details Page{% endblock %}
 
 {% block nav %}
+    {% if request.user.is_authenticated %}
     <li class="nav-item">
-        <a class="nav-link" href="{% url "update_task" task.pk %}">Изменить Задачу</a>
+        <a class="nav-link" href="{% url "webapp:update_task" task.pk %}">Изменить Задачу</a>
     <li class="nav-item">
-        <a class="nav-link" href="{% url "delete_task" task.pk %}">Удалить Задачу</a>
+        <a class="nav-link" href="{% url "webapp:delete_task" task.pk %}">Удалить Задачу</a>
     </li>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
