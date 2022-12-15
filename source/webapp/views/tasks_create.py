@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.generic import CreateView
@@ -6,7 +7,7 @@ from webapp.forms import TaskForm
 from webapp.models import Project
 
 
-class CreateTaskView(CreateView):
+class CreateTaskView(LoginRequiredMixin, CreateView):
     form_class = TaskForm
     template_name = 'tasks/create.html'
 
@@ -16,4 +17,4 @@ class CreateTaskView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('project_view', kwargs={'pk': self.object.project.pk})
+        return reverse('webapp:project_view', kwargs={'pk': self.object.project.pk})
