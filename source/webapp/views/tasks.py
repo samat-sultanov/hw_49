@@ -69,6 +69,25 @@ class UpdateTask(PermissionRequiredMixin, UpdateView):
         return reverse('webapp:project_view', kwargs={'pk': self.object.project.pk})
 
 
+class CreateTask(LoginRequiredMixin, View):
+
+    def get(self, request, *args, **kwargs):
+        if request.method == 'GET':
+            form = TaskForm()
+            return render(request, 'tasks/create.html', {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = TaskForm(data=request.POST)
+        if form.is_valid():
+            summary = form.cleaned_data.get('summary')
+            description = form.cleaned_data.get('description')
+            status = form.cleaned_data.get('status')
+            type = form.cleaned_data.pop('type')
+            new_task = Task.objects.create(summary=summary, description=description,
+                                           status=status)
+            new_task.type.set(type)
+            return redirect('webapp:task_view', pk=new_task.pk)
+        return render(request, 'tasks/create.html', {'form': form})
 
 
 class DeleteTask(PermissionRequiredMixin, DeleteView):

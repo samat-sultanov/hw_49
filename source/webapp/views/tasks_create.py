@@ -22,3 +22,5 @@ class CreateTaskView(PermissionRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('webapp:project_view', kwargs={'pk': self.object.project.pk})
+
+
