@@ -31,7 +31,7 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display_links = ['title']
     list_filter = ['start_date']
     search_fields = ['title', 'full_description']
-    fields = ['title', 'full_description', 'start_date', 'end_date', 'created_at', 'updated_at']
+    fields = ['title', 'full_description', 'start_date', 'end_date', 'created_at', 'updated_at', 'user']
     readonly_fields = ['created_at', 'updated_at']
 
 

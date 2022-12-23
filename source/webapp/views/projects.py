@@ -1,8 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.shortcuts import reverse
 
-from webapp.forms import ProjectForm
+from webapp.forms import ProjectForm, UserForm
 from webapp.models import Project
 
 
@@ -21,6 +22,15 @@ class DetailProjectView(DetailView):
         context = super().get_context_data(**kwargs)
         context['projects'] = self.object
         return context
+
+
+class UpdateProjectUser(LoginRequiredMixin, UpdateView):
+    form_class = UserForm
+    template_name = 'projects/user_update.html'
+    model = Project
+
+    def get_success_url(self):
+        return reverse('webapp:project_view', kwargs={'pk': self.object.pk})
 
 
 class CreateProject(LoginRequiredMixin, CreateView):

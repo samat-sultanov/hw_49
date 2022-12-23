@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Project User{% endblock %}
+
+{% block content %}&nbsp;
+    <h3>Добавить/Удалить пользователя из проекта {{  project.title }}</h3>&nbsp;
+    <form action="" method="post">
+        {% include 'partial/form.html' with button_text='Обновить' %}
+    </form>
+{% endblock %}

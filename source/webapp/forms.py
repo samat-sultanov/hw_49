@@ -27,6 +27,15 @@ class TaskForm(forms.ModelForm):
         return super().clean()
 
 
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['user']
+        widgets = {
+            'user': widgets.CheckboxSelectMultiple,
+        }
+
+
 class SearchForm(forms.Form):
     search = forms.CharField(max_length=50, required=False, label='Найти')
 
