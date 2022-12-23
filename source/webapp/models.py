@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth import get_user_model
 
 from webapp.validate import validate_summary
 
@@ -60,6 +61,7 @@ class Project(BaseModel):
     full_description = models.TextField(max_length=100, null=False, blank=False, verbose_name="Описание проекта")
     start_date = models.DateField(null=False, blank=False, verbose_name='Дата начала')
     end_date = models.DateField(null=True, blank=True, verbose_name='Дата окончания')
+    user = models.ManyToManyField(get_user_model(), related_name='projects', verbose_name='Пользователь')
 
     def __str__(self):
         return f"{self.id}. {self.title}"
