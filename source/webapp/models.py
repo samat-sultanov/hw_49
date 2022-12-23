@@ -21,7 +21,7 @@ class Task(BaseModel):
                                verbose_name='Статус')
     type = models.ManyToManyField('webapp.Type', related_name='tasks', verbose_name='Тип')
     project = models.ForeignKey('webapp.Project', on_delete=models.CASCADE, related_name='project_tasks',
-                               verbose_name='Проект')
+                                verbose_name='Проект')
 
     def __str__(self):
         return f"{self.id}. {self.summary}: {self.status}"
@@ -63,13 +63,18 @@ class Project(BaseModel):
     end_date = models.DateField(null=True, blank=True, verbose_name='Дата окончания')
     user = models.ManyToManyField(get_user_model(), related_name='projects', verbose_name='Пользователь')
 
+    class Meta:
+        db_table = "projects"
+        verbose_name = "Проект"
+        verbose_name_plural = "Проекты"
+
+        permissions = [
+            ('add_user_project', 'Добавить пользователя в проект'),
+            ('remove_user_project', 'Удалить пользователя из проекта'),
+        ]
+
     def __str__(self):
         return f"{self.id}. {self.title}"
 
     def get_absolute_url(self):
         return reverse('webapp:project_view', kwargs={'pk': self.pk})
-
-    class Meta:
-        db_table = "projects"
-        verbose_name = "Проект"
-        verbose_name_plural = "Проекты"

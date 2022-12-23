@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
@@ -56,38 +56,27 @@ class TaskView(TemplateView):
         return super().get_context_data(**kwargs)
 
 
-class UpdateTask(LoginRequiredMixin, UpdateView):
+class UpdateTask(PermissionRequiredMixin, UpdateView):
     form_class = TaskForm
     template_name = 'tasks/update.html'
     model = Task
+    permission_required = 'webapp.change_task'
+
+    def has_permission(self):
+        return super().has_permission() and self.get_object().project.user.filter(username=self.request.user)
 
     def get_success_url(self):
         return reverse('webapp:project_view', kwargs={'pk': self.object.project.pk})
 
 
-class CreateTask(LoginRequiredMixin, View):
-
-    def get(self, request, *args, **kwargs):
-        if request.method == 'GET':
-            form = TaskForm()
-            return render(request, 'tasks/create.html', {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        form = TaskForm(data=request.POST)
-        if form.is_valid():
-            summary = form.cleaned_data.get('summary')
-            description = form.cleaned_data.get('description')
-            status = form.cleaned_data.get('status')
-            type = form.cleaned_data.pop('type')
-            new_task = Task.objects.create(summary=summary, description=description,
-                                           status=status)
-            new_task.type.set(type)
-            return redirect('webapp:task_view', pk=new_task.pk)
-        return render(request, 'tasks/create.html', {'form': form})
 
 
-class DeleteTask(LoginRequiredMixin, DeleteView):
+class DeleteTask(PermissionRequiredMixin, DeleteView):
     model = Task
+    permission_required = 'webapp.delete_task'
+
+    def has_permission(self):
+        return super().has_permission() and self.get_object().project.user.filter(username=self.request.user)
 
     def get(self, request, *args, **kwargs):
         return super().delete(request, *args, **kwargs)

@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.generic import CreateView
@@ -7,9 +7,13 @@ from webapp.forms import TaskForm
 from webapp.models import Project
 
 
-class CreateTaskView(LoginRequiredMixin, CreateView):
+class CreateTaskView(PermissionRequiredMixin, CreateView):
     form_class = TaskForm
     template_name = 'tasks/create.html'
+    permission_required = 'webapp.add_task'
+
+    def has_permission(self):
+        return super().has_permission() and self.get_object().project.user.filter(username=self.request.user)
 
     def form_valid(self, form):
         project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
