@@ -26,10 +26,10 @@
                 {% endblock %}
                 {% if request.user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}">Выйти</a>
+                        <p>Привет, <a href="{% url 'accounts:detail' request.user.pk %}">{{ request.user.username }}</a>
                     </li>
                     <li class="nav-item">
-                        <p>Здравствуйте {{ user.username }}</p>
+                        <a class="nav-link" href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}">Выйти</a>
                     </li>
                 {% else %}
                     <li class="nav-item">

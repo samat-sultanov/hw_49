@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Страница Пользователя{% endblock %}
+
+{% block content %}&nbsp;&nbsp;
+    <h3>Страница пользователя: {{ user_obj.get_full_name|default:user_obj.username }}</h3>&nbsp;
+
+    <div class="card mb-3">
+        <div class="row g-0">
+            {% if user_obj.profile.avatar %}
+                <div class="col-md-4">
+                    <img src="{{ user_obj.profile.avatar.url }}" class="img-fluid rounded-start w-75">
+                </div>
+            {% endif %}
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Имя пользователя: {{ user_obj.username }}</h5>
+                    <p class="card-text">Имя: {{ user_obj.first_name }}</p>
+                    <p class="card-text">Фамилия: {{ user_obj.last_name }}</p>
+                    <p class="card-text">Почта: {{ user_obj.email }}</p>
+                    <p class="card-text">GitHub: {{ user_obj.profile.url_github }}</p>
+                    <p class="card-text">О себе: {{ user_obj.profile.about }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
