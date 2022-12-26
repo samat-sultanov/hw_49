@@ -18,10 +18,14 @@
                     <p class="card-text">Имя: {{ user_obj.first_name }}</p>
                     <p class="card-text">Фамилия: {{ user_obj.last_name }}</p>
                     <p class="card-text">Почта: {{ user_obj.email }}</p>
-                    <p class="card-text">GitHub: {{ user_obj.profile.url_github }}</p>
-                    <p class="card-text">О себе: {{ user_obj.profile.about }}</p>
+                    <p class="card-text">GitHub: {{ user_obj.profile.url_github|default_if_none:"" }}</p>
+                    <p class="card-text">О себе: {{ user_obj.profile.about|default_if_none:"" }}</p>
                 </div>
             </div>
         </div>
     </div>
+
+    {% if user_obj.projects.all %}
+        {% include 'partial/project_list_partial.html' with projects=user_obj.projects.all %}
+    {% endif %}
 {% endblock %}

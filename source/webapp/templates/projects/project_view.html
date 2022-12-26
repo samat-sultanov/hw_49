@@ -4,19 +4,27 @@
 
 {% block nav %}
     {% if request.user.is_authenticated %}
-        <li class="nav-item">
-            <a class="nav-link" href="{% url "webapp:update_project" project.pk %}">Редактировать Проект</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url "webapp:delete_project" project.pk %}">Удалить Проект</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url "webapp:project_task_create" project.pk %}">Добавить Задачу</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url "webapp:update_project_user" project.pk %}">Добавить/Удалить
-                Пользователя</a>
-        </li>
+        {% if perms.webapp.change_project %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "webapp:update_project" project.pk %}">Редактировать Проект</a>
+            </li>
+        {% endif %}
+        {% if perms.webapp.delete_project %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "webapp:delete_project" project.pk %}">Удалить Проект</a>
+            </li>
+        {% endif %}
+        {% if perms.webapp.add_task %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "webapp:project_task_create" project.pk %}">Добавить Задачу</a>
+            </li>
+        {% endif %}
+        {% if perms.webapp.add_user_project and perms.webapp.remove_user_project %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "webapp:update_project_user" project.pk %}">Добавить/Удалить
+                    Пользователя</a>
+            </li>
+        {% endif %}
     {% endif %}
 {% endblock %}
 

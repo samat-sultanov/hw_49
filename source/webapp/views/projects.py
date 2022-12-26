@@ -12,6 +12,7 @@ class ProjectsView(ListView):
     template_name = 'projects/index.html'
     context_object_name = 'projects'
     ordering = ['-updated_at']
+    paginate_by = 3
 
 
 class DetailProjectView(DetailView):
