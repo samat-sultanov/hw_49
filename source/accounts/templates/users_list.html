@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Список Пользователей
+{% endblock %}
+
+{% block content %}
+    <br/><h3>Список Пользователей:</h3><br>
+    <div class="row">
+        {% for each_user in users %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{% url "accounts:detail" each_user.pk %}"><h5
+                                style="display: inline-block;">{{ each_user.username }}</h5></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

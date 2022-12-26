@@ -9,6 +9,11 @@
     <li class="nav-item">
         <a class="nav-link" href="{% url "webapp:index" %}">Список Задач</a>
     </li>
+    {% if request.user.is_authenticated and perms.auth.view_user and perms.accounts.view_profile %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url "accounts:users_view" %}">Список Пользователей</a>
+        </li>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
