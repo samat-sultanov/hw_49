@@ -13,7 +13,8 @@ class CreateTaskView(PermissionRequiredMixin, CreateView):
     permission_required = 'webapp.add_task'
 
     def has_permission(self):
-        return super().has_permission() and self.get_object().project.user.filter(username=self.request.user)
+        project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
+        return super().has_permission() and self.request.user in project.user.all()
 
     def form_valid(self, form):
         project = get_object_or_404(Project, pk=self.kwargs.get('pk'))

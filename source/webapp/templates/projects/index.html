@@ -2,9 +2,9 @@
 
 {% block nav %}
     {% if request.user.is_authenticated %}
-    <li class="nav-item">
-        <a class="nav-link" href="{% url "webapp:create_project" %}">Добавить Проект</a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url "webapp:create_project" %}">Добавить Проект</a>
+        </li>
     {% endif %}
     <li class="nav-item">
         <a class="nav-link" href="{% url "webapp:index" %}">Список Задач</a>
