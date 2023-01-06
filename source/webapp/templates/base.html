@@ -33,10 +33,10 @@
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class='nav-link' href="{% url 'accounts:login' %}?next={{ request.get_full_path }}">Войти</a>
+                        <a class='nav-link' href="{% url 'accounts:login' %}?next={% if request.GET.next %}{{ request.GET.next }}{% else %}{{ request.get_full_path }}{% endif %}">Войти</a>
                     </li>
                       <li class="nav-item">
-                        <a class='nav-link' href="{% url 'accounts:registration' %}?next={{ request.get_full_path }}">Зарегистрироваться</a>
+                        <a class='nav-link' href="{% url 'accounts:registration' %}?next={% if request.GET.next  %}{{ request.GET.next }}{% else %}{{ request.get_full_path }}{% endif %}">Зарегистрироваться</a>
                     </li>
                 {% endif %}
             </ul>

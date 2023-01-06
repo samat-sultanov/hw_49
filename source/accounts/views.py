@@ -1,11 +1,11 @@
-from django.contrib.auth import login
-from django.contrib.auth import get_user_model
+from django.contrib.auth import login, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.views import PasswordChangeView
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
-from accounts.forms import MyUserCreationForm, UserChangeForm, ProfileChangeForm, PasswordChangeForm
+from accounts.forms import MyUserCreationForm, UserChangeForm, ProfileChangeForm
 from accounts.models import Profile
 
 
@@ -78,3 +78,10 @@ class UserChangeView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('accounts:detail', kwargs={'pk': self.get_object().pk})
+
+
+class UserPasswordChangeView(PasswordChangeView):
+    template_name = 'user_password_change.html'
+
+    def get_success_url(self):
+        return reverse('accounts:detail', kwargs={'pk': self.request.user.pk})

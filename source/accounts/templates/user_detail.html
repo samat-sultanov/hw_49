@@ -2,12 +2,12 @@
 
 {% block nav %}
     {% if user_obj.pk == request.user.pk %}
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'accounts:change' %}">Редактировать </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Смена пароля</a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:change' %}">Редактировать </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:password_change' %}">Смена пароля</a>
+        </li>
     {% endif %}
 {% endblock %}
 
