@@ -3,9 +3,9 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
-from accounts.forms import MyUserCreationForm
+from accounts.forms import MyUserCreationForm, UserChangeForm, ProfileChangeForm
 from accounts.models import Profile
 
 
@@ -40,3 +40,11 @@ class UsersView(PermissionRequiredMixin, ListView):
     template_name = 'users_list.html'
     context_object_name = 'users'
     permission_required = ('auth.view_user', 'accounts.view_profile')
+
+
+class UserChangeView(LoginRequiredMixin, UpdateView):
+    model = get_user_model()
+    form_class = UserChangeForm
+    template_name = 'user_change.html'
+    context_object_name = 'user_obj'
+    form_profile_class = ProfileChangeForm
